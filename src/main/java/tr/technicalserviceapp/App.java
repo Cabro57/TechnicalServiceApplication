@@ -51,6 +51,7 @@ public class App {
             public void run() {
                 JFrame frame = new MainUI();
                 frame.setVisible(true);
+                System.out.println("Version 2");
             }
         });
     }
