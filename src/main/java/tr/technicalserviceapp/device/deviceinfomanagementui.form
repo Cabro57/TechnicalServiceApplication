@@ -189,6 +189,7 @@
                         <constraints/>
                         <properties>
                           <editable value="true"/>
+                          <lineWrap value="true"/>
                           <text value=""/>
                         </properties>
                       </component>
@@ -207,6 +208,7 @@
                         <constraints/>
                         <properties>
                           <editable value="true"/>
+                          <lineWrap value="true"/>
                           <text value=""/>
                         </properties>
                       </component>

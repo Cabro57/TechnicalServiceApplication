@@ -71,7 +71,9 @@
                 <children>
                   <component id="3dcf5" class="javax.swing.JTextArea" binding="comment_textarea">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <lineWrap value="true"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>

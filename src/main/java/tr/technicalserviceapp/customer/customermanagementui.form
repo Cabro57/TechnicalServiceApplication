@@ -146,7 +146,9 @@
                 <children>
                   <component id="b7a06" class="javax.swing.JTextArea" binding="address_textarea">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <lineWrap value="true"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>
@@ -170,7 +172,9 @@
                 <children>
                   <component id="e5bf5" class="javax.swing.JTextArea" binding="note_textarea">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <lineWrap value="true"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>

@@ -155,7 +155,9 @@
             <children>
               <component id="abfbb" class="javax.swing.JTextArea" binding="detected_fault_textarea">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <lineWrap value="true"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -178,6 +180,7 @@
               <component id="73962" class="javax.swing.JTextArea" binding="operation_made_textarea">
                 <constraints/>
                 <properties>
+                  <lineWrap value="true"/>
                   <wrapStyleWord value="false"/>
                 </properties>
               </component>
@@ -201,7 +204,9 @@
             <children>
               <component id="1db13" class="javax.swing.JTextArea" binding="ordered_part_textarea">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <lineWrap value="true"/>
+                </properties>
               </component>
             </children>
           </scrollpane>

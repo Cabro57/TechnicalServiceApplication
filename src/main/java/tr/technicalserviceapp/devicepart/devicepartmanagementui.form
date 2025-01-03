@@ -51,6 +51,7 @@
                         <constraints/>
                         <properties>
                           <editable value="true"/>
+                          <lineWrap value="true"/>
                           <text value=""/>
                         </properties>
                       </component>
@@ -131,7 +132,6 @@
                         <item value="Sıfır"/>
                         <item value="İkinci El"/>
                       </model>
-                      <text value=""/>
                     </properties>
                   </component>
                   <component id="66e56" class="javax.swing.JLabel" binding="barcode_label">
