@@ -210,7 +210,7 @@ public class DeviceInfoManagementUI extends JDialog {
         String accessory = accessory_textarea.getText();
         String fault = fault_textarea.getText();
 
-        if ((customer == null || customer.isEmpty()) || name.isEmpty() || brand.isEmpty() || model.isEmpty() || serial_number.isEmpty() || password.isEmpty() || (urgency != null || urgency.isEmpty()) || accessory.isEmpty() || fault.isEmpty()) {
+        if ((this.customer == null || customer.isEmpty()) || name.isEmpty() || brand.isEmpty() || model.isEmpty() || serial_number.isEmpty() || password.isEmpty() || (urgency == null || urgency.isEmpty()) || accessory.isEmpty() || fault.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "Lütfen tüm alanları doldurun.",
                     "Eksik Bilgi",
