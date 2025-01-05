@@ -1,8 +1,9 @@
-package tr.technicalserviceapp.settings;
+package tr.technicalserviceapp.ui;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.google.gson.JsonObject;
-import tr.technicalserviceapp.MainUI;
+import tr.technicalserviceapp.settings.Manager;
+import tr.technicalserviceapp.settings.Theme;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -19,14 +20,15 @@ public class SettingsUI extends JDialog {
     private JComboBox<String> theme_combobox;
     private JTextField background_textfield;
     private JLabel theme_label;
-    private JLabel background_label;
     private JCheckBox full_screen_checkbox;
 
     private final MainUI mainUI;
 
     public SettingsUI(MainUI mainUI) {
         this.mainUI = mainUI;
-        setIconImage(new FlatSVGIcon("icon/settings.svg").getImage());
+        FlatSVGIcon icon = new FlatSVGIcon("icon/settings.svg");
+        icon.setColorFilter(new FlatSVGIcon.ColorFilter(color -> Color.LIGHT_GRAY));
+        setIconImage(icon.getImage());
         Setup();
         setContentPane(content_pane);
         getRootPane().setDefaultButton(ok_button);
@@ -68,34 +70,13 @@ public class SettingsUI extends JDialog {
 
     private void Setup() {
         Dimension screen_size = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int) (screen_size.width * 0.6);
-        int height = (int) (screen_size.height * 0.6);
+        int width = (int) (screen_size.width * 0.3);
+        int height = (int) (screen_size.height * 0.5);
 
         setSize(width, height);
         setLocationRelativeTo(null);
 
         setTitle("Ayarlar");
-
-        // Arka plan seçim toolbar
-        JToolBar toolbar = new JToolBar();
-        JButton background_button = new JButton(new FlatSVGIcon("icon/folder.svg"));
-        toolbar.add(background_button);
-        background_button.addActionListener(e -> chooseBackgroundImage());
-
-        // Arka plan yolu yükle
-        String background_path = (String) Manager.getSetting("background_image");
-        background_textfield.setText(background_path);
-        background_textfield.putClientProperty("JTextField.trailingComponent", background_button);
-        background_textfield.putClientProperty("JTextField.showClearButton", true);
-        background_textfield.putClientProperty("JTextField.clearCallback",
-                (Runnable) () -> {
-                    background_textfield.setText("");
-                    apply_button.setEnabled(true);
-                });
-
-        // Full screen checkbox ayarı
-        full_screen_checkbox.setSelected(Boolean.parseBoolean((String) Manager.getSetting("full_screen")));
-        full_screen_checkbox.addActionListener(e -> apply_button.setEnabled(true)); // Değişiklik olduğunda apply aktif
 
         // Diğer ayarların yüklenmesi
         loadThemes();
@@ -140,37 +121,8 @@ public class SettingsUI extends JDialog {
         }
     }
 
-    private void setBackgroundImage() {
-        String backgroundImagePath = background_textfield.getText();
-
-        if (!backgroundImagePath.isEmpty() && !backgroundImagePath.equals(Manager.getSetting("background_image"))) {
-            Manager.setSetting("background_image", backgroundImagePath);
-            mainUI.setBackground(new ImageIcon(backgroundImagePath).getImage());
-        } else if (backgroundImagePath.isEmpty()) {
-            Manager.setSetting("background_image", "");
-            mainUI.setBackground((Image) null);
-        }
-
-        apply_button.setEnabled(false);
-    }
-
-    private void saveFullScreenSetting() {
-        boolean isSelected = full_screen_checkbox.isSelected(); // Checkbox durumunu al
-        String currentSetting = (String) Manager.getSetting("full_screen");
-
-        // Eğer mevcut ayar farklıysa değişikliği kaydet
-        if (currentSetting == null || !currentSetting.equals(Boolean.toString(isSelected))) {
-            Manager.setSetting("full_screen", Boolean.toString(isSelected)); // Yeni değeri kaydet
-            mainUI.setFullScreen(isSelected); // MainUI üzerinden full screen ayarını uygula
-        }
-
-        apply_button.setEnabled(false); // Apply butonunu pasifleştir
-    }
-
 
     private void onOK() {
-        setBackgroundImage(); // Arka plan ayarını kaydet
-        saveFullScreenSetting(); // Full screen ayarını kaydet
         dispose(); // Pencereyi kapat
     }
 
@@ -180,7 +132,6 @@ public class SettingsUI extends JDialog {
     }
 
     private void onApply() {
-        setBackgroundImage(); // Arka plan ayarını uygula
-        saveFullScreenSetting(); // Full screen ayarını uygula
+
     }
 }

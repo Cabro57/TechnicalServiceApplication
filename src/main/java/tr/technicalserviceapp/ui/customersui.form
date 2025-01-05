@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tr.technicalserviceapp.ui.CustomersUI">
+  <grid id="27dc6" binding="main_panel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="5" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="20" y="20" width="739" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="8b86e" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="10">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="93217" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="true" same-size-vertically="false" hgap="0" vgap="0">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="f3551" class="javax.swing.JButton" binding="tümMüşterilerButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <text value="Tüm Müşteriler"/>
+                </properties>
+              </component>
+              <component id="e26e0" class="javax.swing.JButton" binding="borcuBulunanMüşterilerButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <text value="Borcu Bulunan Müşteriler"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="fb56b" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="6edd5" class="javax.swing.JTextField" binding="table_filter_textfield">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="4f0dd" class="javax.swing.JButton" binding="new_customer_add_button">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <borderPainted value="true"/>
+                  <contentAreaFilled value="true"/>
+                  <text value="Yeni Müşteri Ekle"/>
+                </properties>
+              </component>
+              <toolbar id="95709">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="f18b6" class="javax.swing.JButton" binding="button1" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="true"/>
+                      <focusable value="false"/>
+                      <text value="Button"/>
+                    </properties>
+                  </component>
+                  <component id="d95c4" class="javax.swing.JButton" binding="button2" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="true"/>
+                      <focusable value="false"/>
+                      <text value="Button"/>
+                    </properties>
+                  </component>
+                  <component id="58c3" class="javax.swing.JButton" binding="button3" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="true"/>
+                      <focusable value="false"/>
+                      <text value="Button"/>
+                    </properties>
+                  </component>
+                  <component id="8fcb2" class="javax.swing.JButton" binding="button7" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="true"/>
+                      <focusable value="false"/>
+                      <text value="Button"/>
+                    </properties>
+                  </component>
+                  <component id="7eee3" class="javax.swing.JButton" binding="button8" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <borderPainted value="false"/>
+                      <contentAreaFilled value="true"/>
+                      <focusable value="false"/>
+                      <text value="Button"/>
+                    </properties>
+                  </component>
+                </children>
+              </toolbar>
+              <hspacer id="9b724">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="99cac">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+          <scrollpane id="809c0" binding="table_scroll">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <focusable value="false"/>
+              <horizontalScrollBarPolicy value="31"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="3dd5e" class="javax.swing.JTable" binding="customer_table">
+                <constraints/>
+                <properties>
+                  <focusable value="false"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
