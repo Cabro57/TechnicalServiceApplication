@@ -279,7 +279,6 @@ public class DeviceInfoManagementUI extends JDialog {
             operation.setUrgency(urgency);
             operation.setAccessory(accessory);
             operation.setReported_fault(fault);
-            operation.setService_fee(0);
             operation.setUpdated_at(update_at);
 
             ServiceRecords.update(operation);
@@ -316,6 +315,7 @@ public class DeviceInfoManagementUI extends JDialog {
             operation = ServiceRecords.getServiceRecords().get(modelRow);
 
             this.customer = Customers.getCustomer(operation.getCustomer());
+            customer_textfield.setText(customer.toString());
             name_textfield.setText(operation.getName());
             brand_textfield.setText(operation.getBrand());
             model_textfield.setText(operation.getModel());

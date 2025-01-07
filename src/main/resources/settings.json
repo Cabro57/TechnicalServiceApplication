@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "1.0.3",
   "storage": {
     "customers_file_name": "customers.csv",
     "device_parts_file_name": "device_parts.csv",

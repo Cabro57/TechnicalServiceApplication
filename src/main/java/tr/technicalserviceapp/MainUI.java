@@ -28,6 +28,8 @@ public class MainUI extends JFrame {
     public MainUI() {
         Setup();
 
+        String version = (String) Manager.getSetting("version");
+        setTitle("Servicio - v" + version);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         add(main_panel);
     }
