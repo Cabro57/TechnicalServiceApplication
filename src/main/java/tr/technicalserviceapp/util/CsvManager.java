@@ -42,30 +42,35 @@ public class CsvManager {
         }
     }
 
-    public void update(int ID, String[] new_row) throws IOException {
+    public void update(int ID, String[] newRow) throws IOException {
         List<String[]> allRows = loadAll();
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.write(String.join(",", header));
             writer.newLine();
-            for (int i = 0; i < allRows.size(); i++) {
-                if (i == ID) {
-                    writer.write(ID + "," + String.join(",", new_row));
+
+            for (String[] row : allRows) {
+                int currentID = Integer.parseInt(row[0]); // ID sütununu al
+                if (currentID == ID) {
+                    writer.write(ID + "," + String.join(",", newRow));
                 } else {
-                    writer.write(String.join(",", allRows.get(i)));
+                    writer.write(String.join(",", row));
                 }
                 writer.newLine();
             }
         }
     }
 
+
     public void remove(int ID) throws IOException {
         List<String[]> allRows = loadAll();
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             writer.write(String.join(",", header));
             writer.newLine();
-            for (int i = 0; i < allRows.size(); i++) {
-                if (i != ID) {
-                    writer.write(String.join(",", allRows.get(i)));
+
+            for (String[] row : allRows) {
+                int currentID = Integer.parseInt(row[0]); // ID sütununu al
+                if (currentID != ID) {
+                    writer.write(String.join(",", row));
                     writer.newLine();
                 }
             }

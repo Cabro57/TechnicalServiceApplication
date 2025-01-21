@@ -78,13 +78,13 @@ public class ListDeleteUpdateUI extends JDialog{
         add_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String newName = JOptionPane.showInputDialog(ListDeleteUpdateUI.this, "Yeni isim gir:", "Ekle", JOptionPane.PLAIN_MESSAGE);
+                String newName = JOptionPane.showInputDialog(ListDeleteUpdateUI.this, "Yeni isim giriniz:", "Ekle", JOptionPane.PLAIN_MESSAGE);
                 if (newName != null && !newName.trim().isEmpty()) {
                     try {
                         manager.add(new String[]{newName});
                         loadNamesToList();
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Error adding name: " + search_text_field.getText(), "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "İsim ekleme sırasında hata oluştu: " + search_text_field.getText(), "Hata", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -96,17 +96,17 @@ public class ListDeleteUpdateUI extends JDialog{
                 Name selectedValue = list.getSelectedValue();
                 int selectedIndex = list.getSelectedIndex();
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Please select a name to edit.", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Lütfen düzenlemek için bir isim seçin.", "Hata", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
-                String newName = JOptionPane.showInputDialog(ListDeleteUpdateUI.this, "İsmi güncelle:", list_model.getElementAt(selectedIndex));
+                String newName = JOptionPane.showInputDialog(ListDeleteUpdateUI.this, "İsmi güncelleyin:", list_model.getElementAt(selectedIndex));
                 if (newName != null && !newName.trim().isEmpty()) {
                     try {
                         manager.update(selectedValue.getId(), new String[]{newName});
                         loadNamesToList();
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Error editing name: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "İsim düzenleme sırasında hata oluştu: " + ex.getMessage(), "Hata", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -119,17 +119,17 @@ public class ListDeleteUpdateUI extends JDialog{
                 int selectedIndex = list.getSelectedIndex();
 
                 if (selectedIndex == -1) {
-                    JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Please select a name to delete.", "Error", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Lütfen silmek için bir isim seçin.", "Hata", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
-                int confirmation = JOptionPane.showConfirmDialog(ListDeleteUpdateUI.this, "Are you sure you want to delete this name?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+                int confirmation = JOptionPane.showConfirmDialog(ListDeleteUpdateUI.this, "Bu ismi silmek istediğinizden emin misiniz?", "Silme Onayı", JOptionPane.YES_NO_OPTION);
                 if (confirmation == JOptionPane.YES_OPTION) {
                     try {
                         manager.remove(selectedValue.getId());
                         loadNamesToList();
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "Error deleting name: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(ListDeleteUpdateUI.this, "İsim silme sırasında hata oluştu: " + ex.getMessage(), "Hata", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -138,9 +138,22 @@ public class ListDeleteUpdateUI extends JDialog{
 
     }
 
-    private class Name {
-        private int id;
-        private String name;
+    private void loadNamesToList() {
+        list_model.clear();
+        try {
+            List<String[]> names = manager.loadAll(); // "Name" sütunu okunur
+            for (String[] name : names) {
+                Name n = new Name(Integer.parseInt(name[0]), name[1]);
+                list_model.addElement(n);
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "İsimleri yüklerken hata oluştu: " + e.getMessage(), "Hata", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private static class Name {
+        private final int id;
+        private final String name;
 
         public Name(int id, String name) {
             this.id = id;
@@ -158,19 +171,6 @@ public class ListDeleteUpdateUI extends JDialog{
         @Override
         public String toString() {
             return name;
-        }
-    }
-
-    private void loadNamesToList() {
-        list_model.clear();
-        try {
-            List<String[]> names = manager.loadAll(); // "Name" sütunu okunur
-            for (String[] name : names) {
-                Name n = new Name(Integer.parseInt(name[0]), name[1]);
-                list_model.addElement(n);
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error loading names: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

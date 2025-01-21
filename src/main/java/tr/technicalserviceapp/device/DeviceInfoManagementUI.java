@@ -198,6 +198,26 @@ public class DeviceInfoManagementUI extends JDialog {
         editor.putClientProperty("JTextField.trailingComponent", model_button);
     }
 
+    private void suggestionTextAdd(String text, String file_name) {
+        if (text.isEmpty()) {
+            return;
+        }
+
+        String[] header = { "ID", "name"};
+        String file_path = Manager.getPath("storage.storage_path").toString() + file_name;
+        try {
+            CsvManager dataCsv = new CsvManager(header, file_path);
+            for (String[] t : dataCsv.loadAll()) {
+                if (t[1].equalsIgnoreCase(text)) {
+                    return;
+                }
+            }
+            dataCsv.add(new String[]{text});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void addDevice() {
 
         String customer = customer_textfield.getText();
@@ -217,6 +237,10 @@ public class DeviceInfoManagementUI extends JDialog {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
+
+        suggestionTextAdd(name, "/device_name.csv");
+        suggestionTextAdd(brand, "/device_brand.csv");
+        suggestionTextAdd(model, "/device_model.csv");
 
         int id = ServiceRecords.getSafeID();
         int customer_id = this.customer.getID();
@@ -269,6 +293,10 @@ public class DeviceInfoManagementUI extends JDialog {
             String accessory = accessory_textarea.getText();
             String fault = fault_textarea.getText();
             LocalDateTime update_at = LocalDateTime.now();
+
+            suggestionTextAdd(name, "/device_name.csv");
+            suggestionTextAdd(brand, "/device_brand.csv");
+            suggestionTextAdd(model, "/device_model.csv");
 
             operation.setCustomer(customer_id);
             operation.setName(name);

@@ -107,7 +107,7 @@ public class SuggestionsMenu {
                 if (menu.getComponentCount() > 0) {
                     //  * 2 top and bot border
                     menu.show(editor, 0, editor.getHeight());
-                    menu.setPopupSize(editor.getWidth(), (menu.getComponentCount() * 35) + 2);
+                    menu.setPopupSize(editor.getWidth(), ( 5 * 35) + 2);
                 } else {
                     menu.setVisible(false);
                 }
@@ -139,7 +139,12 @@ public class SuggestionsMenu {
                     event.itemClick(data);
                     menu.setVisible(false);
                 });
+                menuItem.setMinimumSize(new Dimension(Integer.MIN_VALUE, 35));
                 menu.add(menuItem);
+
+//                if (menu.getComponentCount() > 5) {
+//                    break;
+//                }
             }
         }
     }
@@ -155,3 +160,4 @@ public class SuggestionsMenu {
         return list;
     }
 }
+

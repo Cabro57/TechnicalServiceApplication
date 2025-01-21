@@ -157,6 +157,26 @@ public class DevicePartManagementUI extends JDialog {
         editor.putClientProperty("JTextField.trailingComponent", model_button);
     }
 
+    private void suggestionTextAdd(String text, String file_name) {
+        if (text.isEmpty()) {
+            return;
+        }
+
+        String[] header = { "ID", "name"};
+        String file_path = Manager.getPath("storage.storage_path").toString() + file_name;
+        try {
+            CsvManager dataCsv = new CsvManager(header, file_path);
+            for (String[] t : dataCsv.loadAll()) {
+                if (t[1].equalsIgnoreCase(text)) {
+                    return;
+                }
+            }
+            dataCsv.add(new String[]{text});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void deviceAdd() {
         String name = name_textfield.getText();
         String barcode = barcode_textfield.getText();
@@ -178,6 +198,9 @@ public class DevicePartManagementUI extends JDialog {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
+
+        suggestionTextAdd(supplier, "/suppliers.csv");
+        suggestionTextAdd(category, "/categories.csv");
 
         int id = DeviceParts.getSafeID();
         LocalDateTime created_at = LocalDateTime.now();
